@@ -24,20 +24,30 @@ class MyApp extends StatelessWidget {
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
-  final _firstController = FileCaseController();
-  final _secondController = FileCaseController();
+  FileCaseController firstController =
+      FileCaseController().initializeGET(tag: 'controller1');
+  FileCaseController secondController =
+      FileCaseController().initializeGET(tag: 'controller2');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
             child: Column(
-      children: const [
+      children: [
         FileCase(
+          fileCaseController: firstController,
           tag: 'controller1',
         ),
-        FileUploadIconButton(tag: 'controller1'),
-        FileCase(tag: 'controller2'),
-        FileUploadIconButton(tag: 'controller2')
+        FileUploadIconButton(
+            fileCaseController: firstController, tag: 'controller1'),
+        FileCase(fileCaseController: secondController, tag: 'controller2'),
+        FileUploadIconButton(
+            fileCaseController: secondController, tag: 'controller2'),
+        TextButton(
+            onPressed: () {
+              print(firstController.files.length);
+            },
+            child: Text('Press me '))
       ],
     )));
   }

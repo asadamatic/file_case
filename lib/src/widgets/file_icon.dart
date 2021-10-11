@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:file_case/file_case_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +11,7 @@ class FileIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _fileCaseController = Get.put(FileCaseController(), tag: tag);
+    final fileCaseController = Get.find<FileCaseController>(tag: tag);
     return Container(
       padding: const EdgeInsets.only(left: 5.0, right: 5.0),
       child: Stack(
@@ -33,8 +31,8 @@ class FileIcon extends StatelessWidget {
                     fileName ?? '',
                     style: TextStyle(
                         fontSize:
-                        Theme.of(context).textTheme.caption?.fontSize ??
-                            12.0),
+                            Theme.of(context).textTheme.caption?.fontSize ??
+                                12.0),
                   ),
                 )
               ],
@@ -44,7 +42,7 @@ class FileIcon extends StatelessWidget {
             right: 0.0,
             child: InkWell(
               onTap: () {
-                _fileCaseController.removeFile(index!);
+                fileCaseController.removeFile(index!);
               },
               child: const Align(
                 alignment: Alignment.topRight,
