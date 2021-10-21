@@ -34,18 +34,17 @@ class Home extends StatelessWidget {
         body: Center(
             child: Column(
       children: [
-        FileCase(
-          fileCaseController: firstController,
+        const FileCase(
           tag: 'controller1',
         ),
-        FileUploadIconButton(
-            fileCaseController: firstController, tag: 'controller1'),
-        FileCase(fileCaseController: secondController, tag: 'controller2'),
-        FileUploadIconButton(
-            fileCaseController: secondController, tag: 'controller2'),
+        const FileUploadIconButton(tag: 'controller1'),
+        const FileCase(tag: 'controller2'),
+        const FileUploadIconButton( tag: 'controller2'),
         TextButton(
             onPressed: () {
+
               print(firstController.files.length);
+              print(secondController.files.first.name);
             },
             child: Text('Press me '))
       ],
