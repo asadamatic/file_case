@@ -1,25 +1,34 @@
-import 'package:file_case/file_case_controller.dart';
+import 'package:file_case/src/file_case_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FileIcon extends StatelessWidget {
-  FileIcon({this.fileName, this.index, this.tag, Key? key}) : super(key: key);
+  const FileIcon({this.fileName, this.index, this.tag, Key? key})
+      : super(key: key);
 
-  String? fileName;
-  int? index;
-  String? tag;
+  final String? fileName;
+  final int? index;
+  final String? tag;
 
   @override
   Widget build(BuildContext context) {
-    final fileCaseController = Get.find<FileCaseController>(tag: tag);
+    FileController fileCaseController = Get.find<FileController>(tag: tag);
     return Container(
-      padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
       child: Stack(
         children: [
           Container(
             decoration: BoxDecoration(
-              color: Colors.grey[700],
+              color: Colors.grey[300],
               borderRadius: BorderRadius.circular(8.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3), // changes position of shadow
+                ),
+              ],
             ),
             padding: const EdgeInsets.only(top: 14.0),
             child: Column(
@@ -47,11 +56,12 @@ class FileIcon extends StatelessWidget {
               child: const Align(
                 alignment: Alignment.topRight,
                 child: CircleAvatar(
+                  foregroundColor: Colors.red,
                   radius: 10.0,
-                  backgroundColor: Colors.white,
+                  backgroundColor: Color(0xffFF544E),
                   child: Icon(
                     Icons.close,
-                    color: Colors.red,
+                    color: Colors.white,
                     size: 10.0,
                   ),
                 ),
