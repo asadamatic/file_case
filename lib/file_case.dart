@@ -11,7 +11,6 @@ export 'package:file_case/src/file_case_controller.dart'
 export 'package:file_picker/file_picker.dart' show FileType, FilePickerStatus;
 
 class FileCase extends StatelessWidget {
-
   /// [FileCase] widget displays selected files in a container
   /// On Rendering [FileCase] widget searches for [FileController] with the provided [tag], which is initialized when an instance of [FileCaseController] is created with corresponding [tag]
   ///
@@ -21,7 +20,8 @@ class FileCase extends StatelessWidget {
       this.backgroundColor,
       this.shadowColor,
       this.addButtonBackgroundColor,
-      this.addButtonIconColor});
+      this.addButtonIconColor})
+      : super(key: key);
 
   /// Unique identifier for [FileCaseController] , [FileCase] , [FileUploadIconButton] & [FileUploadButton] to make sure, that their instances are related correctly
   ///
@@ -54,11 +54,12 @@ class FileCase extends StatelessWidget {
           return Container(
             height: 100.0,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: backgroundColor ?? Colors.white,
               borderRadius: BorderRadius.circular(8.0),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.4),
+                  color: shadowColor?.withOpacity(0.4) ??
+                      Colors.grey.withOpacity(0.4),
                   spreadRadius: 5,
                   blurRadius: 7,
                   offset: const Offset(0, 3), // changes position of shadow
@@ -73,18 +74,22 @@ class FileCase extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: _controller.files.length + 1,
               itemBuilder: (_, index) => index == _controller.files.length
-                  ? _controller.filePickerOptions!.allowMultiple ? CircleAvatar(
-                      radius: 15.0,
-                      child: IconButton(
-                        onPressed: _controller.addFile,
-                        icon: const Icon(
-                          Icons.add,
-                        ),
-                        iconSize: 15.0,
-                      ),
-                    ) : SizedBox()
+                  ? _controller.filePickerOptions!.allowMultiple
+                      ? CircleAvatar(
+                          backgroundColor: addButtonBackgroundColor,
+                          radius: 15.0,
+                          child: IconButton(
+                            onPressed: _controller.addFile,
+                            icon: const Icon(
+                              Icons.add,
+                            ),
+                            color: addButtonIconColor,
+                            iconSize: 15.0,
+                          ),
+                        )
+                      : const SizedBox()
                   : FileIcon(
-                      fileName: _controller.files[index].name,
+                      platformFile: _controller.files[index],
                       index: index,
                       tag: tag,
                     ),

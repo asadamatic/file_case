@@ -1,12 +1,14 @@
 import 'package:file_case/src/file_case_controller.dart';
+import 'package:file_case/src/widgets/close_icon.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FileIcon extends StatelessWidget {
-  const FileIcon({this.fileName, this.index, this.tag, Key? key})
+  const FileIcon({this.platformFile, this.index, this.tag, Key? key})
       : super(key: key);
 
-  final String? fileName;
+  final PlatformFile? platformFile;
   final int? index;
   final String? tag;
 
@@ -24,7 +26,7 @@ class FileIcon extends StatelessWidget {
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.2),
-                  spreadRadius: 5,
+                  spreadRadius: 3,
                   blurRadius: 7,
                   offset: const Offset(0, 3), // changes position of shadow
                 ),
@@ -33,43 +35,53 @@ class FileIcon extends StatelessWidget {
             padding: const EdgeInsets.only(top: 14.0),
             child: Column(
               children: [
-                const Icon(Icons.file_copy),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    fileName ?? '',
-                    style: TextStyle(
-                        fontSize:
-                            Theme.of(context).textTheme.caption?.fontSize ??
-                                12.0),
+                Expanded(flex: 4, child: _fileIcon()),
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: Colors.grey),
+                    child: Text(
+                      platformFile?.name ?? '',
+                      style:
+                          const TextStyle(color: Colors.white, fontSize: 11.0),
+                    ),
                   ),
                 )
               ],
             ),
           ),
           Positioned(
-            right: 0.0,
-            child: InkWell(
-              onTap: () {
+              right: 0.0,
+              child: CloseIcon(onTap: () {
                 fileCaseController.removeFile(index!);
-              },
-              child: const Align(
-                alignment: Alignment.topRight,
-                child: CircleAvatar(
-                  foregroundColor: Colors.red,
-                  radius: 10.0,
-                  backgroundColor: Color(0xffFF544E),
-                  child: Icon(
-                    Icons.close,
-                    color: Colors.white,
-                    size: 10.0,
-                  ),
-                ),
-              ),
-            ),
-          ),
+              })),
         ],
       ),
     );
+  }
+
+  Icon _fileIcon() {
+    switch (platformFile!.extension) {
+      case 'png':
+      case 'jpg':
+      case 'jpeg':
+        return const Icon(Icons.image);
+      case 'pdf':
+        return const Icon(Icons.picture_as_pdf);
+      case 'docs':
+      case 'txt':
+      case 'docx':
+        return const Icon(Icons.file_copy);
+      case 'mp4':
+      case 'mov':
+        return const Icon(Icons.video_call);
+      default:
+        return const Icon(Icons.file_copy);
+    }
   }
 }

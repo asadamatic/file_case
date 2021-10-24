@@ -1,7 +1,7 @@
 name: file_case
 description: A flutter package to show uplaoded files in a scrollable widget.
 version: 0.0.1
-homepage:
+homepage: https://github.com/asadamtic/file_case
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

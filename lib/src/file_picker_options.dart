@@ -1,4 +1,3 @@
-
 import 'package:file_picker/file_picker.dart';
 
 class FilePickerOptions {
@@ -34,7 +33,7 @@ class FilePickerOptions {
   /// enabling this on IO (iOS & Android) may result in out of memory issues if you allow multiple picks or
   /// pick huge files. Use `withReadStream` instead. Defaults to `true` on web, `false` otherwise.
   ///
-  bool withData = false;
+  bool withData;
 
   /// If `withReadStream` is set, picked files will have its byte data available as a `Stream<List<int>>`
   /// which can be useful for uploading and processing large files. Defaults to `false`.
@@ -52,8 +51,8 @@ class FilePickerOptions {
     this.allowMultiple = false,
     this.withData = false,
     this.withReadStream = false,
-  }): assert(allowedExtensions == null || type == FileType.custom,
-  'Custom extension filters are only allowed with `FileType.custom`, please change it or remove filters.\n');
+  }) : assert(allowedExtensions == null || type == FileType.custom,
+            'Custom extension filters are only allowed with `FileType.custom`, please change it or remove filters.\n');
 
   // FileType get type {
   //   return _getFileType();

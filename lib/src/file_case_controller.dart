@@ -19,10 +19,9 @@ class FileController extends GetxController {
         allowedExtensions: filePickerOptions?.allowedExtensions ?? [],
         allowCompression: filePickerOptions?.allowCompression ?? true,
         withReadStream: filePickerOptions?.withReadStream ?? false,
-        withData: filePickerOptions?.withData ?? false,
+        withData: GetPlatform.isWeb ? true : filePickerOptions!.withData,
         type: filePickerOptions?.type ?? FileType.any,
         allowMultiple: filePickerOptions?.allowMultiple ?? false);
-
     if (result != null) {
       files.value = result.files.map((platformFile) => platformFile).toList();
       update();
@@ -48,7 +47,7 @@ class FileController extends GetxController {
         allowedExtensions: filePickerOptions?.allowedExtensions ?? [],
         allowCompression: filePickerOptions?.allowCompression ?? true,
         withReadStream: filePickerOptions?.withReadStream ?? false,
-        withData: filePickerOptions?.withData ?? false,
+        withData: GetPlatform.isWeb ? true : filePickerOptions!.withData,
         type: filePickerOptions?.type ?? FileType.any,
         allowMultiple: filePickerOptions?.allowMultiple ?? false);
 
@@ -66,13 +65,19 @@ class FileCaseController {
   ///
   String? tag;
   FileController? _fileCaseController;
+
+  /// Options needed for custom functionality of [pickFiles] function from [FilePicker]
+  ///
   FilePickerOptions? filePickerOptions;
+
+  /// Interface for developers to get picked files for processing or transfer, in their flutter app
+  ///
   FileCaseController({this.tag, this.filePickerOptions}) {
     _fileCaseController = FileController.initialize(
-        tag: tag, filePickerOptions: filePickerOptions);
+        tag: tag, filePickerOptions: filePickerOptions ?? FilePickerOptions());
   }
 
   List<PlatformFile> get files {
-    return _fileCaseController!.files.value;
+    return _fileCaseController!.files;
   }
 }

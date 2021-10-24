@@ -24,24 +24,25 @@ class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
   final FileCaseController firstController = FileCaseController(
-      filePickerOptions: FilePickerOptions(type: FileType.any),
+      filePickerOptions:
+          FilePickerOptions(type: FileType.any, allowMultiple: true),
       tag: 'controller1');
-  final FileCaseController secondController =
-      FileCaseController(tag: 'controller2');
+  final FileCaseController secondController = FileCaseController(
+      tag: 'controller2',
+      filePickerOptions: FilePickerOptions(allowMultiple: true));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(title: const Text('File Case Example'),),
         body: Center(
             child: Column(
-          children: [
+          children: const [
             const FileCase(
               tag: 'controller1',
             ),
             const FileUploadIconButton(tag: 'controller1'),
             const FileCase(tag: 'controller2'),
             const FileUploadIconButton(tag: 'controller2'),
-            TextButton(onPressed: () {}, child: Text('Press me '))
           ],
         )));
   }

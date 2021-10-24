@@ -1,22 +1,29 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
 
 TODO: Put a short description of the package here that helps potential users
 know whether this package might be useful for them.
 
+A flutter widget to showcase and process uploaded files on Web, Android, Ios, MacOs, Linux & Windows.
+
+
 ## Features
+#
 
 TODO: List what your package can do. Maybe include images, gifs, or videos.
+
+### Web 
+![Alt Text](./working_examples/web.gif)
+
+### Desktop - MacOs & Windows 
+![Alt Text](./working_examples/desktop.gif)
+
+### Mobile - Android & Ios 
+![Alt Text](./working_examples/mobile.gif)
+
+### Upcoming Features
+#
+
+* File preview 
 
 ## Getting started
 
@@ -25,11 +32,36 @@ start using the package.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+Follow these simple steps to get started with `FileCase`, for detailed example see <a href="https://github.com/asadamatic/file_case/blob/master/example/lib/example.dart" class="special">example</a> folder. 
+
+1. Create an instance of `FileCaseController` and provide a unique string as `tag`
 
 ```dart
-const like = 'sample';
+final FileCaseController firstController = FileCaseController(
+      filePickerOptions: FilePickerOptions(type: FileType.any),
+      tag: 'controller1');
+```
+
+Pass `FilePickerOptions` to customize `pickFiles` functionality from `file_picker`.
+For information about FilePickerOptions, hover over the parameters and see the docs.
+
+2. Use the `FileCase` widget in your UI and pass the same `tag` string as for the `FileCaseController` 
+
+```dart
+const FileCase(
+              tag: 'controller1',
+            ),
+```
+
+3. Use the `FileUploadIconButton` or `FileUploadButton` in your UI to be able to pick files.
+Pass the same `tag` string as for the corresponding `FileCaseController` and `FileCase`.
+
+```dart
+const FileUploadIconButton(tag: 'controller1'),
+
+OR
+
+const FileUploadButton(tag: 'controller1'),
 ```
 
 ## Additional information
