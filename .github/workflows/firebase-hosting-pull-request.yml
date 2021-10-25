@@ -21,5 +21,6 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ASADAMATIC_PUB_PACKAGES }}'
           projectId: asadamatic-pub-packages
+          entryPoint: ./example
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
