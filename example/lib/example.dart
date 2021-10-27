@@ -20,12 +20,12 @@ class Home extends StatelessWidget {
         body: Center(
             child: Column(
           children: const [
-            const FileCase(
+            FileCase(
               tag: 'controller1',
             ),
-            const FileUploadIconButton(tag: 'controller1'),
-            const FileCase(tag: 'controller2'),
-            const FileUploadIconButton(tag: 'controller2'),
+            FileUploadIconButton(tag: 'controller1'),
+            FileCase(tag: 'controller2'),
+            FileUploadIconButton(tag: 'controller2'),
           ],
         )));
   }

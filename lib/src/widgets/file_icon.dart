@@ -5,9 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FileIcon extends StatelessWidget {
-  const FileIcon({this.platformFile, this.index, this.tag, Key? key})
+  const FileIcon(
+      {this.platformFile,
+      this.index,
+      this.tag,
+      this.fileIconColor,
+      this.fileNameColor,
+      Key? key})
       : super(key: key);
-
+  final Color? fileIconColor, fileNameColor;
   final PlatformFile? platformFile;
   final int? index;
   final String? tag;
@@ -35,20 +41,25 @@ class FileIcon extends StatelessWidget {
             padding: const EdgeInsets.only(top: 14.0),
             child: Column(
               children: [
-                Expanded(flex: 4, child: _fileIcon()),
+                Expanded(
+                    flex: 4,
+                    child: Icon(
+                      _fileIcon(),
+                      color: fileIconColor ?? Colors.black,
+                    )),
                 Expanded(
                   flex: 2,
                   child: Container(
                     alignment: Alignment.center,
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    margin: const EdgeInsets.symmetric(horizontal: 4.0),
+                    margin: const EdgeInsets.symmetric(horizontal: 1.0),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8.0),
+                        borderRadius: BorderRadius.circular(12.0),
                         color: Colors.grey),
                     child: Text(
                       platformFile?.name ?? '',
-                      style:
-                          const TextStyle(color: Colors.white, fontSize: 11.0),
+                      style: TextStyle(
+                          color: fileNameColor ?? Colors.white, fontSize: 11.0),
                     ),
                   ),
                 )
@@ -65,23 +76,23 @@ class FileIcon extends StatelessWidget {
     );
   }
 
-  Icon _fileIcon() {
+  IconData _fileIcon() {
     switch (platformFile!.extension) {
       case 'png':
       case 'jpg':
       case 'jpeg':
-        return const Icon(Icons.image);
+        return Icons.image;
       case 'pdf':
-        return const Icon(Icons.picture_as_pdf);
+        return Icons.picture_as_pdf;
       case 'docs':
       case 'txt':
       case 'docx':
-        return const Icon(Icons.file_copy);
+        return Icons.file_copy;
       case 'mp4':
       case 'mov':
-        return const Icon(Icons.video_call);
+        return Icons.video_call;
       default:
-        return const Icon(Icons.file_copy);
+        return Icons.file_copy;
     }
   }
 }

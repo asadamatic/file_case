@@ -12,15 +12,17 @@ export 'package:file_picker/file_picker.dart' show FileType, FilePickerStatus;
 
 class FileCase extends StatelessWidget {
   /// [FileCase] widget displays selected files in a container
-  /// On Rendering [FileCase] widget searches for [FileController] with the provided [tag], which is initialized when an instance of [FileCaseController] is created with corresponding [tag]
+  /// On Rendering [FileCase] widget searches for [FileController] with the provided [tag], which is initialized when an instance of [FileCaseController] is created with corresponding [tag].
   ///
   const FileCase(
       {Key? key,
       this.tag,
-      this.backgroundColor,
-      this.shadowColor,
+      this.backgroundColor = Colors.white,
+      this.shadowColor = Colors.grey,
       this.addButtonBackgroundColor,
-      this.addButtonIconColor})
+      this.addButtonIconColor = Colors.white,
+      this.fileNameColor = Colors.white,
+      this.fileIconColor = Colors.black})
       : super(key: key);
 
   /// Unique identifier for [FileCaseController] , [FileCase] , [FileUploadIconButton] & [FileUploadButton] to make sure, that their instances are related correctly
@@ -43,6 +45,14 @@ class FileCase extends StatelessWidget {
   ///
   final Color? addButtonIconColor;
 
+  /// Color for the file icon
+  ///
+  final Color? fileIconColor;
+
+  /// Color for the file name, listed below file icon
+  ///
+  final Color? fileNameColor;
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<FileController>(
@@ -55,7 +65,7 @@ class FileCase extends StatelessWidget {
             height: 100.0,
             decoration: BoxDecoration(
               color: backgroundColor ?? Colors.white,
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderRadius.circular(10.0),
               boxShadow: [
                 BoxShadow(
                   color: shadowColor?.withOpacity(0.4) ??
@@ -68,31 +78,37 @@ class FileCase extends StatelessWidget {
             ),
             margin: const EdgeInsets.all(12.0),
             padding:
-                const EdgeInsets.symmetric(horizontal: 24.0, vertical: 14.0),
-            child: ListView.builder(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: _controller.files.length + 1,
-              itemBuilder: (_, index) => index == _controller.files.length
-                  ? _controller.filePickerOptions!.allowMultiple
-                      ? CircleAvatar(
-                          backgroundColor: addButtonBackgroundColor,
-                          radius: 15.0,
-                          child: IconButton(
-                            onPressed: _controller.addFile,
-                            icon: const Icon(
-                              Icons.add,
+                const EdgeInsets.symmetric(horizontal: 18.0, vertical: 16.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10.0),
+              child: ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: _controller.files.length + 1,
+                itemBuilder: (_, index) => index == _controller.files.length
+                    ? _controller.filePickerOptions!.allowMultiple
+                        ? CircleAvatar(
+                            backgroundColor: addButtonBackgroundColor ?? Theme.of(context).primaryColor,
+                            radius: 15.0,
+                            child: IconButton(
+                              onPressed: _controller.addFile,
+                              icon: const Icon(
+                                Icons.add,
+                              ),
+                              color: addButtonIconColor ??
+                                  Colors.white,
+                              iconSize: 15.0,
                             ),
-                            color: addButtonIconColor,
-                            iconSize: 15.0,
-                          ),
-                        )
-                      : const SizedBox()
-                  : FileIcon(
-                      platformFile: _controller.files[index],
-                      index: index,
-                      tag: tag,
-                    ),
+                          )
+                        : const SizedBox()
+                    : FileIcon(
+                        platformFile: _controller.files[index],
+                        index: index,
+                        tag: tag,
+                        fileIconColor: fileIconColor,
+                        fileNameColor: fileNameColor,
+                      ),
+              ),
             ),
           );
         });
