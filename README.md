@@ -1,22 +1,23 @@
 
 
-A flutter widget to showcase and process uploaded files on Web, Android, Ios, MacOs, Linux & Windows.
-
+A flutter widget to showcase and process uploaded files on Web, Android, Ios, MacOs, Linux & Windows.  
 
 # [Live Web Demo](https://asadamatic-pub-packages.web.app)
-![example workflow](https://img.shields.io/github/workflow/status/asadamatic/file_case/pub_publish?label=Pub%20Build&logo=github
-)
-![example workflow](https://img.shields.io/github/workflow/status/asadamatic/file_case/Deploy%20to%20Firebase%20Hosting%20on%20merge?label=Web%20Example%20Build&logo=github
-)
-
-![example workflow](https://img.shields.io/github/last-commit/asadamatic/file_case?logo=github
-) ![example workflow](https://img.shields.io/github/issues/asadamatic/file_case?logo=github&color=red
-)
-![example workflow](https://img.shields.io/github/issues-closed/asadamatic/file_case?logo=github
-)
 
 
-![example workflow](https://img.shields.io/github/stars/asadamatic/file_case?label=Stars&logo=github&style=social
+![Pub Build Status](https://img.shields.io/github/workflow/status/asadamatic/file_case/pub_publish?label=Pub%20Build&logo=github
+)
+![Live Web Example Build Status](https://img.shields.io/github/workflow/status/asadamatic/file_case/Deploy%20to%20Firebase%20Hosting%20on%20merge?label=Web%20Example%20Build&logo=github
+)
+
+![Last Commit](https://img.shields.io/github/last-commit/asadamatic/file_case?logo=github
+) ![Open Issues](https://img.shields.io/github/issues/asadamatic/file_case?logo=github&color=red
+)
+![Closed Issues](https://img.shields.io/github/issues-closed/asadamatic/file_case?logo=github
+)
+
+
+![Github Repo Stars](https://img.shields.io/github/stars/asadamatic/file_case?label=Stars&logo=github&style=social
 )
 
 
@@ -30,10 +31,10 @@ A flutter widget to showcase and process uploaded files on Web, Android, Ios, Ma
 * Access and process the selected files inside the flutter app  
 
 ### Web 
-![Alt Text](./working_examples/web.gif)
+![Alt Text](./working_examples/web.gif)  
 
 ### Desktop - MacOs & Windows 
-![Alt Text](./working_examples/desktop.gif)
+![Alt Text](./working_examples/desktop.gif)  
 
 ### Mobile - Android & Ios 
 ![Alt Text](./working_examples/mobile.gif)
