@@ -88,15 +88,15 @@ class FileCase extends StatelessWidget {
                 itemBuilder: (_, index) => index == _controller.files.length
                     ? _controller.filePickerOptions!.allowMultiple
                         ? CircleAvatar(
-                            backgroundColor: addButtonBackgroundColor ?? Theme.of(context).primaryColor,
+                            backgroundColor: addButtonBackgroundColor ??
+                                Theme.of(context).primaryColor,
                             radius: 15.0,
                             child: IconButton(
                               onPressed: _controller.addFile,
                               icon: const Icon(
                                 Icons.add,
                               ),
-                              color: addButtonIconColor ??
-                                  Colors.white,
+                              color: addButtonIconColor ?? Colors.white,
                               iconSize: 15.0,
                             ),
                           )

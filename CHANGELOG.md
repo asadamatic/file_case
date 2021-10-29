@@ -1,3 +1,5 @@
-## 0.0.1
+## 0.0.1 27 Oct, 2021
 
-* TODO: Describe initial release.
+## 0.0.2 29 Oct, 2021 
+
+* Improved `readme.md` content.

@@ -31,13 +31,13 @@ A flutter widget to showcase and process uploaded files on Web, Android, Ios, Ma
 * Access and process the selected files inside the flutter app  
 
 ### Web 
-![Alt Text](./working_examples/web.gif)  
+![Alt Text](https://github.com/asadamatic/file_case/blob/master/working_examples/web.gif?raw=true)  
 
 ### Desktop - MacOs & Windows 
-![Alt Text](./working_examples/desktop.gif)  
+![Alt Text](https://github.com/asadamatic/file_case/blob/master/working_examples/desktop.gif?raw=true)  
 
 ### Mobile - Android & Ios 
-![Alt Text](./working_examples/mobile.gif)
+![Alt Text](https://github.com/asadamatic/file_case/blob/master/working_examples/mobile.gif?raw=true)
 
 ### Upcoming Features  
 <br>
